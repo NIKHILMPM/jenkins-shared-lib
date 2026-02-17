@@ -1,5 +1,5 @@
-def call(string url,string branch){
-  echo "checking out the code from github"
-  git url: "$(url)", branch: "$(branch)"
-  echo "done!"
+def call(String url, String branch) {
+    echo "Checking out the code from GitHub"
+    git url: url, branch: branch
+    echo "Done!"
 }
