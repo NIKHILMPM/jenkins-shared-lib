@@ -1,9 +1,9 @@
-def call(String credentialsId, String u_name, String image, String tag) {
+def call(String credentialsId, String image, String tag) {
 
     withDockerRegistry(
         credentialsId: credentialsId,
         url: ''
     ) {
-        sh "docker push ${u_name}/${image}:${tag}"
+        sh "docker push ${image}:${tag}"
     }
 }
