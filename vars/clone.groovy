@@ -1,5 +1,5 @@
 def(string url,string branch){
   echo "checking out the code from github"
-  git url: url, branch: branch
+  git url: "$(url)", branch: "$(branch)"
   echo "done!"
 }
