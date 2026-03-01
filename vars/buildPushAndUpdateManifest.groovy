@@ -2,7 +2,8 @@ def call(String githubCredentialsId,
          String dockerCredentialsId,
          String dockerRepo,
          String imageName,
-         String tag) {
+         String tag,
+         String branch_name) {
 
     def fullImage = "${dockerRepo}/argocd-${imageName}:${tag}"
 
@@ -31,7 +32,7 @@ def call(String githubCredentialsId,
 
             if ! git diff --cached --quiet; then
                 git commit -m "[skip ci] Update ${imageName} image to ${tag}"
-                git push https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/NIKHILMPM/devops-argocd.git ${env.BRANCH_NAME}
+                git push https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/NIKHILMPM/devops-argocd.git HEAD:${branch_name}
             else
                 echo "No manifest changes detected"
             fi
