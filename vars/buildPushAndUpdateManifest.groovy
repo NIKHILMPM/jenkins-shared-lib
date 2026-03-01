@@ -23,12 +23,12 @@ def call(String githubCredentialsId,
     )]) {
 
         sh """
-            sed -i "s|image: .*|image: ${fullImage}|g" k8s/${imageName}-manifest.yaml
+            sed -i "s|image: .*|image: ${fullImage}|g" ${WORKSPACE}/k8s/${imageName}-manifest.yaml
 
             git config user.name "jenkins"
             git config user.email "jenkins@ci.com"
 
-            git add k8s/${imageName}-manifest.yaml
+            git add ${WORKSPACE}/k8s/${imageName}-manifest.yaml
 
             if ! git diff --cached --quiet; then
                 git commit -m "[skip ci] Update ${imageName} image to ${tag}"
